@@ -35,7 +35,11 @@ def record_audio(filename, duration=2):
 
 if __name__ == '__main__':
 
-    for i in range(20):
+    directory = 'samples/song_of_time'
+    existing_files = os.listdir(directory)
+    newest_sample = max([int(file.split('_')[1].split('.')[0]) for file in existing_files]) if existing_files else 0
+
+    for i in range(newest_sample+1,newest_sample+1+20):
         print(f'Recording sample {i} in 3...')
         time.sleep(1)
         print("2...")
@@ -43,5 +47,5 @@ if __name__ == '__main__':
         print("1...")
         time.sleep(1)
         print("Recording...")
-        record_audio(f'song_of_time/sample_{i}.wav', 6)
+        record_audio(f'{directory}/sample_{i}.wav', 6)
         print("Done!")
